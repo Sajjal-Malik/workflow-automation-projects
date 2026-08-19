@@ -14,14 +14,14 @@ if (-not $isAdmin) {
 Write-Host "Starting daily workplace routine..." -ForegroundColor Green
 
 # Run the Python cleanup script
-python "D:\Learn and Work\Secure Programming\workflow-automation-projects\daily-cleanup-and-attendance\clean_up.py"
+python "path\of\python_script.py"
 
 Write-Host "Launching workplace applications..."
 
 # Launch daily workplace applications
 Start-Process "chrome.exe"
 Start-Process "slack.exe"
-Start-Process "C:\Users\Sajal\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Time Doctor.lnk"
+Start-Process "name" or "path\of\other\applications"
 
 Write-Host "Routine complete. Closing in 10 seconds..." -ForegroundColor Green
 
