@@ -1,6 +1,5 @@
 ﻿# Check if running as Admin
-$id = [System.Security.Principal.WindowsPrincipal][System.Security.Principal.WindowsIdentity]::GetCurrent()
-$isAdmin = ($id).IsInRole([System.Security.Principal.WindowsBuiltInRole]::Administrator)
+$isAdmin = ([System.Security.Principal.WindowsPrincipal][System.Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([System.Security.Principal.WindowsBuiltInRole]::Administrator)
 
 if (-not $isAdmin) {
     Write-Host "Requesting administrative privileges..." -ForegroundColor Yellow
