@@ -33,8 +33,9 @@ def cleanup_windows_data():
     user_temp = os.environ.get('TEMP')
     clear_directory(user_temp, "User Temp Folder")
 
-    # Windows Temp
     system_root = os.environ.get('SystemRoot', 'C:\\Windows')
+
+    # Windows Temp
     windows_temp = os.path.join(system_root, 'Temp')
     clear_directory(windows_temp, "Windows Temp Folder")
 

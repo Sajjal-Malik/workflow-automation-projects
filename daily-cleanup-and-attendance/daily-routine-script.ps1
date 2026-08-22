@@ -5,24 +5,24 @@ $isAdmin = ($id).IsInRole([System.Security.Principal.WindowsBuiltInRole]::Admini
 if (-not $isAdmin) {
     Write-Host "Requesting administrative privileges..." -ForegroundColor Yellow
 
-    # Relaunch the script with Administrator privileges
+    # Relaunch the script with Administrator privileges (User Account Control -> UAC pop-up will open)
     Start-Process powershell -ArgumentList "-ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs
 
     # Exit the current non-admin process
-    exit 
+    exit
 }
 
 Write-Host "Starting daily workplace routine..." -ForegroundColor Green
 
 # Run the Python cleanup script
-python "path\of\python_script.py"
+python "path\of\python_script.py" OR "specify execution of any other script"
 
 Write-Host "Launching workplace applications..."
 
 # Launch daily workplace applications
 Start-Process "chrome.exe"
 Start-Process "slack.exe"
-Start-Process "name" or "path\of\other\applications"
+Start-Process "name of an application" OR "path\of\other\application"
 
 Write-Host "Routine complete. Closing in 10 seconds..." -ForegroundColor Green
 
