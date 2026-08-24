@@ -27,4 +27,4 @@ Start-Process "name of an application" OR "path\of\other\application"
 Write-Host "Routine complete. Closing in 10 seconds..." -ForegroundColor Green
 
 # Give applications time to detach completely
-Start-Sleep -Seconds 10
+Start-Sleep -Seconds 5
