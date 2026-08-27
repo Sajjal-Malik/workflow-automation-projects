@@ -10,21 +10,28 @@ if (-not $isAdmin) {
 
     # Exit the current non-admin process
     exit
+
+} else {
+
+    Write-Host "Starting daily workplace routine..." -ForegroundColor Green
+
+    # Run the Python cleanup script
+    python "path\of\python_script.py" OR "specify execution of any other script"
+
+    # Launch daily workplace applications
+    Write-Host "Launching workplace applications (De-elevated to Standard User)..." -ForegroundColor Cyan
+
+    # Starting this App with Admin privileges
+    Start-Process "chrome.exe"
+
+    # "explorer.exe" -ArgumentList" -> This makes Applications Run as Standard User
+    Start-Process "explorer.exe" -ArgumentList "slack.exe"
+    Start-Process "explorer.exe" -ArgumentList "name of an application" OR "path\of\other\application"
+
+    Write-Host "Routine complete. Closing in 3 seconds..." -ForegroundColor Green
+
+    # Give applications time to detach completely
+    Start-Sleep -Seconds 3
+
+    Write-Host "Script execution complete successfully!" -ForegroundColor Blue
 }
-
-Write-Host "Starting daily workplace routine..." -ForegroundColor Green
-
-# Run the Python cleanup script
-python "path\of\python_script.py" OR "specify execution of any other script"
-
-Write-Host "Launching workplace applications..."
-
-# Launch daily workplace applications
-Start-Process "chrome.exe"
-Start-Process "slack.exe"
-Start-Process "name of an application" OR "path\of\other\application"
-
-Write-Host "Routine complete. Closing in 10 seconds..." -ForegroundColor Green
-
-# Give applications time to detach completely
-Start-Sleep -Seconds 5
