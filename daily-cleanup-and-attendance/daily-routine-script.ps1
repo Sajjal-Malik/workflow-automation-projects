@@ -54,8 +54,8 @@ if ($Option -eq "startup") {
     # "explorer.exe" -ArgumentList" -> This makes Applications Run as Standard User 
     Start-Process "explorer.exe" -ArgumentList "name of an application" OR "path\of\other\application"
 
-    Write-Host "Routine complete. Closing in 3 seconds..." -ForegroundColor Green
+    Write-Host "Routine complete. Closing in 5 seconds..." -ForegroundColor Green
 
     # Give applications time to detach completely
-    Start-Sleep -Seconds 3
+    Start-Sleep -Seconds 5
 }
