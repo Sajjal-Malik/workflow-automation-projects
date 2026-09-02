@@ -1,10 +1,9 @@
 ﻿param(
     [Parameter(Mandatory = $true)]
-    # [ValidateSet("cleanup", "startup", ErrorMessage = "Invalid option! Please type either 'cleanup' or 'startup'.")] #Modern Way of Validating Arguments
     [string]$Option
 )
 
-# The Universal Way -Manual Validation)
+# The Universal Way - Manual Validation
 if ($Option -ne "cleanup" -and $Option -ne "startup") {
     Write-Host "=============================================" -ForegroundColor Red
     Write-Host " ERROR: Invalid option '$Option' provided!" -ForegroundColor Red
@@ -22,9 +21,11 @@ if (-not $isAdmin) {
     Write-Host "Requesting administrative privileges..." -ForegroundColor Blue
 
     # Relaunch the script with Administrator privileges (User Account Control -> UAC pop-up will open)
-    Start-Process powershell -ArgumentList "-ExecutionPolicy Bypass -File `"$PSCommandPath`" -Option `"$Option`"" -Verb RunAs
+    Start-Process powershell -ArgumentList "-ExecutionPolicy Bypass -File `"$PSCommandPath`" -Option `"$Option`"" -Verb RunAs -Wait
 
-    Write-Host "Script execution complete successfully!" -ForegroundColor Yellow
+    Write-Host "Script execution completed successfully!" -ForegroundColor Yellow
+
+    Start-Sleep -Seconds 5
 
     # Exit the current non-admin process
     exit
@@ -53,9 +54,9 @@ if ($Option -eq "startup") {
 
     # "explorer.exe" -ArgumentList" -> This makes Applications Run as Standard User 
     Start-Process "explorer.exe" -ArgumentList "name of an application" OR "path\of\other\application"
-
-    Write-Host "Routine complete. Closing in 5 seconds..." -ForegroundColor Green
-
-    # Give applications time to detach completely
-    Start-Sleep -Seconds 5
 }
+
+Write-Host "Routine complete. Closing in 5 seconds..." -ForegroundColor Green
+
+# Give applications time to detach completely
+Start-Sleep -Seconds 5
