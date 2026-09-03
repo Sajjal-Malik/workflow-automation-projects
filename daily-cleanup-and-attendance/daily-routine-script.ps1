@@ -23,18 +23,15 @@ if (-not $isAdmin) {
     # Relaunch the script with Administrator privileges (User Account Control -> UAC pop-up will open)
     Start-Process powershell -ArgumentList "-ExecutionPolicy Bypass -File `"$PSCommandPath`" -Option `"$Option`"" -Verb RunAs -Wait
 
-    Write-Host "Script execution completed successfully!" -ForegroundColor Yellow
+    Write-Host "Elevated script execution complete. Returning to interactive prompt." -ForegroundColor Yellow
 
-    Start-Sleep -Seconds 5
-
-    # Exit the current non-admin process
-    exit
+    return
 }
 
 # --- Everything below this line runs ONLY in the Administrator window ---
 
 if ($Option -eq "cleanup") { 
-    Write-Host "Starting daily workplace routine..." -ForegroundColor Green
+    Write-Host "Starting cleann up of temporary data..." -ForegroundColor Green
 
     # Run the Python cleanup script
     python "path\of\python_script.py" OR "specify execution of any other script"
@@ -56,7 +53,7 @@ if ($Option -eq "startup") {
     Start-Process "explorer.exe" -ArgumentList "name of an application" OR "path\of\other\application"
 }
 
-Write-Host "Routine complete. Closing in 5 seconds..." -ForegroundColor Green
+Write-Host "Routine complete. Closing in 3 seconds..." -ForegroundColor Green
 
 # Give applications time to detach completely
-Start-Sleep -Seconds 5
+Start-Sleep -Seconds 3
