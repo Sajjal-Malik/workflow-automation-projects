@@ -20,12 +20,17 @@ $isAdmin = ($id).IsInRole([System.Security.Principal.WindowsBuiltInRole]::Admini
 if (-not $isAdmin) {
     Write-Host "Requesting administrative privileges..." -ForegroundColor Blue
 
-    # Relaunch the script with Administrator privileges (User Account Control -> UAC pop-up will open)
-    Start-Process powershell -ArgumentList "-ExecutionPolicy Bypass -File `"$PSCommandPath`" -Option `"$Option`"" -Verb RunAs -Wait
+    # Launch the elevated session and capture its specific process ID using -PassThru
+    $elevatedProcess = Start-Process powershell -ArgumentList "-ExecutionPolicy Bypass -File `"$PSCommandPath`" -Option `"$Option`"" -Verb RunAs -PassThru
 
+    # Wait exclusively for the elevated PowerShell window to close (ignores Chrome/Explorer)
+    $elevatedProcess.WaitForExit()
+
+    # This will now print immediately after the elevated blue window closes
     Write-Host "Elevated script execution complete. Returning to interactive prompt." -ForegroundColor Yellow
 
-    return
+    Start-Sleep -Seconds 1
+    exit
 }
 
 # --- Everything below this line runs ONLY in the Administrator window ---
