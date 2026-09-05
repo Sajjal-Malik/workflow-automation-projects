@@ -51,9 +51,6 @@ if ($Option -eq "startup") {
     # Launch daily workplace applications
     Write-Host "Launching workplace applications (De-elevated to Standard User)..." -ForegroundColor Cyan
 
-    # Starting this App with Admin privileges
-    Start-Process "chrome.exe"
-
     # "explorer.exe" -ArgumentList" -> This makes Applications Run as Standard User 
     Start-Process "explorer.exe" -ArgumentList "name of an application" OR "path\of\other\application"
 }
