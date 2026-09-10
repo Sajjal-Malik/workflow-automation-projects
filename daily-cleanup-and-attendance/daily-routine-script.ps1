@@ -51,7 +51,8 @@ if ($Option -eq "startup") {
     # Launch daily workplace applications
     Write-Host "Launching workplace applications (De-elevated to Standard User)..." -ForegroundColor Cyan
 
-    # "explorer.exe" -ArgumentList" -> This makes Applications Run as Standard User 
+    #"explorer.exe" -ArgumentList" -> This makes Applications Run as Standard User 
+    # (Add any number of apps / or their path -> They will be execute in sequence)
     Start-Process "explorer.exe" -ArgumentList "absolute_path\of\any\application"
 }
 
